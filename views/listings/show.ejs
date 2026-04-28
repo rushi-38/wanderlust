@@ -1,0 +1,187 @@
+<% layout("/layouts/boilerplate") %>
+
+  <div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+
+      <div class="col-md-6">
+
+        <div class="card shadow">
+
+          <h3 class="mt-3 text-center">
+            <%= listing.title %>
+          </h3>
+
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image"
+            style="height: 20rem; object-fit: cover;">
+
+          <div class="card-body">
+
+            <p class="card-text">
+              <i>
+                <%= listing.owner?.username || "No Owner" %>
+              </i>
+              <br>
+              <strong>Description:</strong>
+              <%= listing.description %>
+            </p>
+
+            <p class="card-text">
+              <strong>Price:</strong> &#8377; <%= listing.price.toLocaleString("en-IN") %>
+            </p>
+
+            <p class="card-text">
+              <strong>Location:</strong>
+              <%= listing.location %>
+            </p>
+
+            <p class="card-text">
+              <strong>Country:</strong>
+              <%= listing.country %>
+            </p>
+
+            <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+
+              <div class="mt-3">
+
+                <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">
+                  Edit Listing
+                </a>
+
+                <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline"
+                  onsubmit="return confirm('Are you sure you want to delete this listing?');">
+
+                  <button class="btn btn-danger">
+                    Delete Listing
+                  </button>
+
+                </form>
+
+              </div>
+
+              <%}%>
+
+          </div>
+
+        </div>
+
+        <!-- Review Form -->
+        <% if(currUser) { %>
+          <div class="card mt-4 shadow">
+            <div class="card-body">
+
+              <h4 class="mb-3">Leave a Review</h4>
+
+              <form method="POST" action="/listings/<%= listing._id %>/reviews" novalidate class="needs-validation">
+
+
+
+                <div class="mb-3 mt-1">
+                  <label for="rating" class="form-label">Rating</label>
+                  <fieldset class="starability-slot">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                      aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+                </div>
+                <div class="mb-3">
+                  <label for="comment" class="form-label">Comments</label>
+                  <textarea name="review[comment]" id="comment" rows="3" class="form-control" required></textarea>
+                  <div class="invalid-feedback">Please add some comments for review</div>
+
+                </div>
+
+                <button class="btn btn-success">
+                  Submit Review
+                </button>
+
+              </form>
+
+            </div>
+          </div>
+
+      </div>
+      <% } %>
+      
+<% if(listing.reviews.length>0) { %>
+        <div class="row">
+  <h4 class="mt-4">All Reviews</h4>
+          <% let x=1; %>
+
+            <% for(let review of listing.reviews) { %>
+
+              <div class="col-lg-6 col-md-12 mb-3">
+
+                <div class="card h-100">
+                  <div class="card-body">
+
+                    <h6 class="card-title">@<%= review.author?.username || "Anonymous" %>
+                    </h6>
+
+
+                    <p class="starability-result mb-1" data-rating=<%=review.rating %>>
+                      Rated: 3 stars
+                    </p>
+
+                    <p class="mb-3">
+                      <%= review.comment %>
+                    </p>
+
+                    <!-- Delete Review Button -->
+
+                    <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+
+                      <button class="btn btn-danger btn-sm">Delete</button>
+
+                    </form>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <% x++; %>
+
+                <% } %>
+
+        </div>
+<% } %>
+</div>
+<!-- <div class="col-8 offset-3 mb-3">
+  <h3>Where you'll be</h3>
+  <div id="map"></div>
+    </div>
+  </div>
+
+  </div>
+  <script>
+    let mapToken="<%= process.env.MAP_TOKEN%>";
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+    mapboxgl.accessToken = mapToken;
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/standard', // Use the standard style for the map
+        projection: 'globe', // display the map as a globe
+        zoom: 1, // initial zoom level, 0 is the world view, higher values zoom in
+        center: [30, 15] // center the map on this longitude and latitude
+    });
+
+    map.addControl(new mapboxgl.NavigationControl());
+    map.scrollZoom.disable();
+
+    map.on('style.load', () => {
+        map.setFog({}); // Set the default atmosphere style
+    });
+</script> -->

@@ -1,0 +1,102 @@
+body{
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+/* navbar */
+.navbar{
+    height:5rem;
+    background-color: aliceblue;
+}
+
+.f-info-link a{
+    text-decoration: none;
+    color: black;
+}
+.f-info-link a:hoover {
+    text-decoration: underline;
+    
+}
+.fa-compass{
+    color:#fe424d;
+    font-size:2rem ;
+}
+/* footer */
+
+.f-info-socials,
+.f-info-brand{
+    color: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info-links{
+    width: 100%;
+    font-size: 1.5rem;
+}
+.f-info-link a{
+    text-decoration: none;
+    color: black;
+}
+.f-info-link a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: azure;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* cards */
+.card{
+    border:none;
+    margin-bottom: 2rem;
+}.card-img-top{
+    border-radius: 1rem!important;
+    width:100%!important;
+    object-fit: cover!important;
+}
+.card-body{
+    padding: 0, i !important;
+
+}
+.card-text p{
+    font-weight: 400;
+}
+.listing-links{
+    text-decoration: none;
+}
+/* card_effect */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.3;
+    color: black;
+    background-color: white;
+}
+/* new-page */
+.add-btn{
+    background-color: #fe424d!important;
+    border: none!important;
+}
+
+/* map */
+/* #map{
+height: 400px;
+width: 80vw;
+} */
