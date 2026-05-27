@@ -1,7 +1,4 @@
 {
-  "engine":{
-    "nodes":"v24.12.0"
-  },
   "name": "majorproject",
   "version": "1.0.0",
   "description": "",
@@ -9,10 +6,17 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+
+  "main": "app.js",
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
+
+  "engines": {
+    "node": "20.x"
+  },
+
   "dependencies": {
     "cloudinary": "^1.41.0",
     "connect-flash": "^0.1.1",
