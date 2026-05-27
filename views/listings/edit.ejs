@@ -15,6 +15,7 @@ novalidate
 
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
+
         <input 
             type="text"
             id="title"
@@ -23,6 +24,7 @@ novalidate
             class="form-control"
             required
         >
+
         <div class="invalid-feedback">
             Please enter a title.
         </div>
@@ -30,6 +32,7 @@ novalidate
 
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>
+
         <textarea 
             id="description"
             name="listing[description]"
@@ -41,29 +44,34 @@ novalidate
             Description is required.
         </div>
     </div>
-      
 
-   <div class="mb-3">
+    <!-- Current Image -->
     <div class="mb-3">
-        <img src="<%=originalImageUrl %>"/>
-      </div>
-<label class="form-label">Upload New Image</label>
+        <img 
+            src="<%= originalImageUrl %>" 
+            alt="listing image"
+            class="img-fluid"
+        >
+    </div>
 
-<input 
-type="file" 
-name="listing[image]"
-class="form-control"
+    <!-- Upload New Image -->
+    <div class="mb-3">
 
+        <label class="form-label">
+            Upload New Image
+        </label>
 
->
+        <input 
+            type="file" 
+            name="image"
+            class="form-control"
+        >
 
-<div class="invalid-feedback">
-Please enter a valid image URL.
-</div>
-</div>
+    </div>
 
     <div class="mb-3">
         <label for="price" class="form-label">Price</label>
+
         <input 
             type="number"
             id="price"
@@ -73,6 +81,7 @@ Please enter a valid image URL.
             min="1"
             required
         >
+
         <div class="invalid-feedback">
             Price must be greater than 0.
         </div>
@@ -80,6 +89,7 @@ Please enter a valid image URL.
 
     <div class="mb-3">
         <label for="country" class="form-label">Country</label>
+
         <input 
             type="text"
             id="country"
@@ -88,6 +98,7 @@ Please enter a valid image URL.
             class="form-control"
             required
         >
+
         <div class="invalid-feedback">
             Please enter the country.
         </div>
@@ -95,6 +106,7 @@ Please enter a valid image URL.
 
     <div class="mb-3">
         <label for="location" class="form-label">Location</label>
+
         <input 
             type="text"
             id="location"
@@ -103,12 +115,15 @@ Please enter a valid image URL.
             class="form-control"
             required
         >
+
         <div class="invalid-feedback">
             Please enter the location.
         </div>
     </div>
 
-    <button class="btn btn-dark add-btn">Update Listing</button>
+    <button class="btn btn-dark add-btn">
+        Update Listing
+    </button>
 
 </form>
 
